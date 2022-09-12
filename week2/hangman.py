@@ -62,7 +62,6 @@ def main(turns):
 
     """
     word = pick_random_word()
-    print(word)
     tried_letters = []
     found_all = False
     while turns > 0:
