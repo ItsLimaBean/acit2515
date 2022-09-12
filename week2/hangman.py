@@ -15,7 +15,8 @@ def pick_random_word():
     words = []
     with open("words.txt", "r") as f:
         words = f.read().splitlines()
-    return words[random.randrange(0, len(words)-1)]
+        
+    return random.choice(words)
 
 def show_letters_in_word(word, letters):
     """
