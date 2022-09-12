@@ -5,7 +5,6 @@ Week 2 -- complete this file!
 
 """
 
-import string
 import random
 
 # The number of turns allowed is a global constant
@@ -14,8 +13,8 @@ NB_TURNS = 10
 def pick_random_word():
     """Opens the words.txt file, picks and returns a random word from the file"""
     words = []
-    with open("words.txt", "r") as file:
-        words = file.read().splitlines()
+    with open("words.txt", "r") as f:
+        words = f.read().splitlines()
     return words[random.randrange(0, len(words)-1)]
 
 def show_letters_in_word(word, letters):
@@ -36,14 +35,12 @@ def show_letters_in_word(word, letters):
     >>> show_letters_in_word("PIZZA", ["A", "I", "P", "Z"])
     'P I Z Z A'
     """
-    shown_letters = []
-    for letter in word:
-        shown_letters.append(letter.upper() if letter.upper() in letters else "_")
-    return " ".join(shown_letters)
+    letters = [letter.upper() for letter in letters]
+    return " ".join([ (letter.upper() if letter.upper() in letters else "_") for letter in word ])
 
 def all_letters_found(word, letters):
     """Returns True if all letters in word are in the list 'letters'"""
-    for letter in word:
+    for letter in word.upper():
         if letter.upper() not in letters:
             return False
     return True
@@ -73,6 +70,7 @@ def main(turns):
         if len(letter) <= 0:
             print("Enter a letter")
             continue
+
         letter = letter[0].upper()
         if letter not in tried_letters:
             tried_letters.append(letter)
