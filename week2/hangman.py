@@ -5,13 +5,18 @@ Week 2 -- complete this file!
 
 """
 
+import string
+import random
+
 # The number of turns allowed is a global constant
 NB_TURNS = 10
 
 def pick_random_word():
     """Opens the words.txt file, picks and returns a random word from the file"""
-    # WRITE YOUR CODE HERE !
-    return selected_word
+    words = []
+    with open("words.txt", "r") as file:
+        words = file.read().splitlines()
+    return words[random.randrange(0, len(words)-1)]
 
 def show_letters_in_word(word, letters):
     """
@@ -31,12 +36,17 @@ def show_letters_in_word(word, letters):
     >>> show_letters_in_word("PIZZA", ["A", "I", "P", "Z"])
     'P I Z Z A'
     """
-    # WRITE YOUR CODE HERE
-    return my_string
+    shown_letters = []
+    for letter in word:
+        shown_letters.append(letter.upper() if letter.upper() in letters else "_")
+    return " ".join(shown_letters)
 
 def all_letters_found(word, letters):
     """Returns True if all letters in word are in the list 'letters'"""
-    return False
+    for letter in word:
+        if letter.upper() not in letters:
+            return False
+    return True
 
 def main(turns):
     """
@@ -54,8 +64,32 @@ def main(turns):
     Do not forget to pick a random word first :-)
 
     """
-    # WRITE YOUR CODE HERE
-    pass
+    word = pick_random_word()
+    print(word)
+    tried_letters = []
+    found_all = False
+    while turns > 0:
+        letter = input(f"{turns} turns left | Enter a letter: ")
+        if len(letter) <= 0:
+            print("Enter a letter")
+            continue
+        letter = letter[0].upper()
+        if letter not in tried_letters:
+            tried_letters.append(letter)
+        else:
+            print("Already tried", letter)
+            continue
+        
+        turns -= 1
+
+        print(show_letters_in_word(word, tried_letters))
+        if all_letters_found(word, tried_letters):
+            found_all=True
+            break
+        
+    
+    print("You win!" if found_all else f"You lose! The word was {word}.")
+
 
 if __name__ == "__main__":
     main(NB_TURNS)
