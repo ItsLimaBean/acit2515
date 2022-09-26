@@ -70,7 +70,7 @@ class SecretWord:
         return True
 
     def check(self, word):
-        return "".join([l.lower() for l in word]) == self.word
+        return word.lower() == self.word
 
 if __name__ == "__main__":
     my_game = Game(10)
