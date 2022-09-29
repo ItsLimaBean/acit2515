@@ -27,8 +27,8 @@ class Account:
         pass
 
 class CreditAccount(Account):
-    def __init__(self, interest_rate):
-        super().__init__()
+    def __init__(self, customer, interest_rate):
+        super().__init__(customer)
         self.interest = interest_rate
 
     def compute_interest(self):
@@ -37,8 +37,8 @@ class CreditAccount(Account):
             self.withdraw(10)
 
 class SavingsAccount(Account):
-    def __init__(self, interest_rate):
-        super().__init__()
+    def __init__(self, customer, interest_rate):
+        super().__init__(customer)
         self.interest = interest_rate
 
     def withdraw(self, amount):
