@@ -53,7 +53,7 @@ class School:
 
         if self.get_student(student_id) is not None:
             return False
-        
+
         self._students.append(Student(name, student_id))
 
         return True

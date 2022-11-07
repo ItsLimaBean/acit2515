@@ -24,7 +24,7 @@ class Student:
 
     def add_grade(self, grade):
         num_grade = int(grade)
-        if grade > 100 or grade < 0:
+        if num_grade > 100 or num_grade < 0:
             raise ValueError
         
         self.grades.append(num_grade)

@@ -1,4 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    {{ school }}
+    <h1>{{ school.name }}</h1>
+    <ul>
+    {% for student in school.get_students("name") %}
+        <li><a href="{{ url_for('student', student_id=student.student_id) }}">{{ student.name }}</a></li>
+    {% endfor %}
+    </ul>
+
 {% endblock %}
